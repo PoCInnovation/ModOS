@@ -1,8 +1,6 @@
-> If you see this section, you've just created a repository using [PoC Innovation's Open-Source project template](https://github.com/PoCInnovation/open-source-project-template). Check the [getting started guide](./.github/getting-started.md).
+# ModOS
 
-# [PROJECT'S NAME]
-
-[Project's description]
+ModOS is a modular operating system designed to be customizable, lightweight, and optimized, particularly suited for IoT environments, embedded systems, and video game development. It allows granular control over resources and supports loading/unloading of modules in real-time without requiring a reboot.
 
 ## How does it work?
 
@@ -31,11 +29,12 @@ If you're interested in how the project is organized at a higher level, please c
 ## Our PoC team ❤️
 
 Developers
-| [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy) | [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy) | [<img src="https://github.com/MrZalTy.png?size=85" width=85><br><sub>[Developer's name]</sub>](https://github.com/MrZalTy)
-| :---: | :---: | :---: |
+| [<img src="https://github.com/louonezime.png?size=85" width=85><br><sub>Lou Onézime</sub>](https://github.com/louonezime) | [<img src="https://github.com/sephorah.png?size=85" width=85><br><sub>Séphorah Aniambossu</sub>](https://github.com/sephorah) | [<img src="https://github.com/lg-epitech.png?size=85" width=85><br><sub>Laurent Gonzales</sub>](https://github.com/lg-epitech) | [<img src="https://github.com/SIMLUKE.png?size=85" width=85><br><sub>Luc Simon</sub>](https://github.com/SIMLUKE) | [<img src="https://github.com/moonia.png?size=85" width=85><br><sub>Mounia Arjdal</sub>](https://github.com/moonia)
+| :---: | :---: | :---: | :---: | :---: |
+
 
 Manager
-| [<img src="https://github.com/adrienfort.png?size=85" width=85><br><sub>[Manager's name]</sub>](https://github.com/adrienfort)
+| [<img src="https://github.com/adrienfort.png?size=85" width=85><br><sub>pierre Lissope</sub>](https://github.com/pierrelissope)
 | :---: |
 
 <h2 align=center>
