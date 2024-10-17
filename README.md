@@ -34,7 +34,7 @@ Developers
 
 
 Manager
-| [<img src="https://github.com/adrienfort.png?size=85" width=85><br><sub>pierre Lissope</sub>](https://github.com/pierrelissope)
+| [<img src="https://github.com/pierrelissope.png?size=85" width=85><br><sub>Pierre Lissope</sub>](https://github.com/pierrelissope)
 | :---: |
 
 <h2 align=center>
