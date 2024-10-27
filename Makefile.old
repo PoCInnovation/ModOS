@@ -1,0 +1,18 @@
+build:
+	set -e
+
+	i686-elf-as boot.asm -o boot.o
+	i686-elf-gcc -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+	i686-elf-gcc -T linker.ld -o modos.bin -ffreestanding -O2 -nostdlib boot.o kernel.o -lgcc
+
+	grub-file --is-x86-multiboot modos.bin
+
+	cp modos.bin modos/boot/
+	cp grub.cfg modos/boot/grub/
+	grub-mkrescue -o modos.iso modos
+
+qemu:
+	qemu-system-i386 -cdrom modos.iso
+
+fclean:
+	rm -f boot.o kernel.o modos.bin modos.iso modos/boot/modos.bin modos/boot/grub/grub.cfg
