@@ -13,11 +13,12 @@
 #include "../include/kernel.h"
 #include "../include/multiboot.h"
 #include "../include/pixel.h"
+#include "../include/config.h"
+#include "../include/string.h"
 
 /* Check if the compiler thinks you are targeting the wrong operating system. */
 #if defined(__linux__)
-#error                                                                         \
-    "You are not using a cross-compiler, you will most certainly run into trouble"
+#error "You are not using a cross-compiler, you will most certainly run into trouble"
 #endif
 
 /* This tutorial will only work for the 32-bit ix86 targets. */
@@ -55,5 +56,7 @@ void kernel_main(unsigned long magic, multiboot_info_t *mbi) {
     framebuffer_height = mbi->framebuffer_height;
     framebuffer_bpp    = mbi->framebuffer_bpp;
 
-    clear_screen(0xffff0000);
+    clear_screen(BACKGROUND_COLOR);
+
+    printf("Hello %d\n", 42);
 }

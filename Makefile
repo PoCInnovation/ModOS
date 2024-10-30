@@ -1,7 +1,11 @@
-SRC	= 	src/kernel.c			\
-		src/string.c			\
-		src/pixel.c				\
-		src/debug.c				\
+SRC	= 	src/kernel.c				\
+		src/string.c				\
+		src/pixel.c					\
+		src/debug.c					\
+		src/font.c					\
+
+# objcopy -O elf32-i386 -B i386 -I binary assets/zap-ext-light32.psf assets/zap-ext-light32.o
+FONTS = assets/zap-ext-light32.o
 
 CFLAGS += -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 CC	=	i686-elf-gcc
@@ -22,7 +26,7 @@ all: $(EXEC)
 
 $(EXEC):	${OBJ}
 	$(ASMC) $(BOOT_FILE) -o $(BOOT_BIN)
-	$(CC) -T $(LINKER_FILE) -o $(KERNEL_BIN) $(BOOT_BIN) $(OBJ) -lgcc -ffreestanding -O2 -nostdlib
+	$(CC) -T $(LINKER_FILE) -o $(KERNEL_BIN) $(BOOT_BIN) $(OBJ) $(FONTS) -lgcc -ffreestanding -O2 -nostdlib
 
 	grub-file --is-x86-multiboot $(KERNEL_BIN)
 

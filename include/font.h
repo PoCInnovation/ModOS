@@ -12,8 +12,8 @@
     #define PSF_FONT_MAGIC 0x864ab572
 
 typedef struct {
-    uint16_t magic; // Magic bytes for identification.
-    uint8_t fontMode; // PSF font mode.
+    uint16_t magic;        // Magic bytes for identification.
+    uint8_t fontMode;      // PSF font mode.
     uint8_t characterSize; // PSF character size.
 } psf1_header_t;
 
@@ -27,5 +27,13 @@ typedef struct {
     uint32_t height;        /* height in pixels */
     uint32_t width;         /* width in pixels */
 } psf_font_t;
+
+extern uint8_t _binary_zap_ext_light32_psf_start;
+extern uint8_t _binary_zap_ext_light32_psf_end;
+extern uint8_t _binary_zap_ext_light32_psf_size;
+
+void __os_putchar(unsigned short int c, int cx, int cy, uint32_t fg,
+                  uint32_t bg, psf_font_t *font, uint8_t *font_start);
+                  // , psf_font_t *font, uint8_t font_start[]);
 
 #endif /* !FONT_H_ */

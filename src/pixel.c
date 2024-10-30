@@ -24,7 +24,7 @@ static inline uint32_t position(uint32_t x, uint32_t y)
  * x and y indicate the pixel position
  * color is a 32 bit unsigned integer such as 0xAARRGGBB
  */
-void put_pixel(uint32_t x, uint32_t y, argb_t color)
+void put_pixel(uint32_t x, uint32_t y, argb_pixel_t color)
 {
     const uint32_t index = position(x, y);
 
@@ -52,7 +52,7 @@ void put_pixel(uint32_t x, uint32_t y, argb_t color)
     }
 }
 
-void clear_screen(argb_t color)
+void clear_screen(argb_pixel_t color)
 {
     for (uint32_t y = 0; y < framebuffer_height; ++y) {
         for (uint32_t x = 0; x < framebuffer_width; ++x) {
