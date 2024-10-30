@@ -29,7 +29,7 @@ If you're interested in how the project is organized at a higher level, please c
 ## Our PoC team ❤️
 
 Developers
-| [<img src="https://github.com/louonezime.png?size=85" width=85><br><sub>Lou Onézime</sub>](https://github.com/louonezime) | [<img src="https://github.com/sephorah.png?size=85" width=85><br><sub>Séphorah Aniambossu</sub>](https://github.com/sephorah) | [<img src="https://github.com/lg-epitech.png?size=85" width=85><br><sub>Laurent Gonzales</sub>](https://github.com/lg-epitech) | [<img src="https://github.com/SIMLUKE.png?size=85" width=85><br><sub>Luc Simon</sub>](https://github.com/SIMLUKE) | [<img src="https://github.com/moonia.png?size=85" width=85><br><sub>Mounia Arjdal</sub>](https://github.com/moonia)
+| [<img src="https://github.com/louonezime.png?size=85" width=85><br><sub>Lou Onézime</sub>](https://github.com/louonezime) | [<img src="https://github.com/sephorah.png?size=85" width=85><br><sub>Séphorah Aniambossu</sub>](https://github.com/sephorah) | [<img src="https://github.com/lg-epitech.png?size=85" width=85><br><sub>Laurent Gonzalez</sub>](https://github.com/lg-epitech) | [<img src="https://github.com/SIMLUKE.png?size=85" width=85><br><sub>Luc Simon</sub>](https://github.com/SIMLUKE) | [<img src="https://github.com/moonia.png?size=85" width=85><br><sub>Mounia Arjdal</sub>](https://github.com/moonia)
 | :---: | :---: | :---: | :---: | :---: |
 
 
