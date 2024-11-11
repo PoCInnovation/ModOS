@@ -22,7 +22,7 @@
 #endif
 
 /* This tutorial will only work for the 32-bit ix86 targets. */
-#if !defined(__i386__)
+#if !defined(__x86_64__)
 #error "This tutorial needs to be compiled with a ix86-elf compiler"
 #endif
 
@@ -35,6 +35,7 @@ uint8_t framebuffer_bpp;
 // Kernel entry
 void kernel_main(unsigned long magic, multiboot_info_t *mbi) {
     serial_init();
+    serial_printf("This program is running on a %d-bit architecture.\n", (int)(sizeof(void*) * 8));
     serial_printf("Kernel loading\naddr: %x\nmagic: %x\nframebuffer_bpp: "
             "%d\nframebuffer_type: %d\n\n",
             (uintptr_t)mbi, magic, mbi->framebuffer_bpp,

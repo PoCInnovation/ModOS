@@ -5,14 +5,14 @@ SRC	= 	src/kernel.c				\
 		src/font.c					\
 
 # objcopy -O elf32-i386 -B i386 -I binary assets/zap-ext-light32.psf assets/zap-ext-light32.o
-FONTS = assets/zap-ext-light32.o
+FONTS = assets/font.o
 
 CFLAGS += -std=gnu99 -ffreestanding -O2 -Wall -Wextra
-CC	=	i686-elf-gcc
+CC	=	x86_64-elf-gcc
 OBJ	=	$(SRC:.c=.o)
 KERNEL_BIN = kernel.bin
 
-ASMC = i686-elf-as
+ASMC = x86_64-elf-as
 BOOT_FILE =	src/boot.asm
 BOOT_BIN = src/boot.o
 
@@ -28,14 +28,14 @@ $(EXEC):	${OBJ}
 	$(ASMC) $(BOOT_FILE) -o $(BOOT_BIN)
 	$(CC) -T $(LINKER_FILE) -o $(KERNEL_BIN) $(BOOT_BIN) $(OBJ) $(FONTS) -lgcc -ffreestanding -O2 -nostdlib
 
-	grub-file --is-x86-multiboot $(KERNEL_BIN)
+	grub-file --is-x86-multiboot2 $(KERNEL_BIN)
 
 	cp $(KERNEL_BIN) build/boot/
 	cp $(GRUB_FILE) build/boot/grub/
 	grub-mkrescue -o $(EXEC) build/
 
 qemu:
-	qemu-system-i386 -cdrom modos.iso -vga std -serial tcp::4444,server,nowait
+	qemu-system-x86_64 -cdrom modos.iso -vga std -serial tcp::4444,server,nowait
 
 fclean:
 	rm -f $(OBJ) $(BOOT_BIN) $(KERNEL_BIN) build/boot/$(KERNEL_BIN) build/boot/grub/$(GRUB_FILE) $(EXEC)
