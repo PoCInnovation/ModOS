@@ -13,7 +13,7 @@ OBJ	=	$(SRC:.c=.o)
 KERNEL_BIN = kernel.bin
 
 ASMC = x86_64-elf-as
-BOOT_FILE =	src/boot.asm
+BOOT_FILE =	src/boot.s
 BOOT_BIN = src/boot.o
 
 GRUB_FILE =	grub.cfg
