@@ -10,7 +10,7 @@
 #error "This kernel needs to be compiled with an x86_64-elf compiler"
 #endif
 
-#define MULTIBOOT2_BOOTLOADER_MAGIC 0x36d76289
+#define MULTIBOOT2_BOOTLOADER_MAGIC 0xE85250D6
 
 uint8_t *framebuffer;
 uint32_t framebuffer_pitch;
