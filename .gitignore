@@ -1,0 +1,7 @@
+*.o
+*.iso
+*.bin
+
+/test
+test.c
+test.asm
