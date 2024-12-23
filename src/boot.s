@@ -40,16 +40,6 @@ stack_top:
 .global _start
 .type _start, @function
 _start:
-    // TODO:
-    // * A20 Line
-    // * Check multiboot
-    // * Check cpuid
-    // * Check long mode
-    // * Setup page tables
-    // * Enable paging
-    // * gdt
-    // * Enter long mode
-
     movl $0x80000000, %eax    # Set the A-register to 0x80000000.
     cpuid                    # CPU identification.
     cmpl $0x80000001, %eax    # Compare the A-register with 0x80000001.
