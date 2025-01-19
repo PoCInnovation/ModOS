@@ -33,33 +33,25 @@ uint32_t framebuffer_height;
 uint8_t framebuffer_bpp;
 
 // Kernel entry
-void kmain(unsigned long magic, void *mbi) {
+void kmain(void *mbi, unsigned long magic) {
     serial_init();
     serial_printf("Hello %d-bit, world!\n", (int)(sizeof(void*) * 8));
     serial_printf("Magic: %x\n", magic);
     serial_printf("Addr: %x\n", mbi);
-    // serial_printf("Kernel loading\naddr: %x\nmagic: %x\nframebuffer_bpp: "
-    //         "%d\nframebuffer_type: %d\n\n",
-    //         (uintptr_t)mbi, magic, mbi->framebuffer_bpp,
-    //         mbi->framebuffer_type);
+    // serial_printf("framebuffer_addr: %x\n", mbi->framebuffer_addr);
 
     if (magic != MULTIBOOT2_BOOTLOADER_MAGIC) {
         serial_printstr("Bootloader error: magic isn't valid.");
         return;
     }
-    //
-    // if (!(mbi->flags & MULTIBOOT_INFO_FRAMEBUFFER_INFO)) {
-    //     serial_printstr("Graphics mode isn't enabled\n");
-    //     return;
-    // }
-    //
+
     // framebuffer = (uint8_t *)(uintptr_t)mbi->framebuffer_addr;
     // framebuffer_pitch  = mbi->framebuffer_pitch;
     // framebuffer_width  = mbi->framebuffer_width;
     // framebuffer_height = mbi->framebuffer_height;
     // framebuffer_bpp    = mbi->framebuffer_bpp;
-    //
-    // clear_screen(BACKGROUND_COLOR);
-    //
-    // printf("Hello %d\n", 42);
+
+    clear_screen(BACKGROUND_COLOR);
+
+    printf("Hello %d\n", 42);
 }

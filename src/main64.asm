@@ -4,8 +4,8 @@ extern kmain
 section .text
 bits 64
 long_mode_start:
-    mov rdi, rsi    ; Magic number to first argument (rdi)
-    mov rsi, rdi    ; Info pointer to second argument (rsi)
+    ; mov rsi, rdi    ; Info pointer to second argument (rsi)
+    ; mov rdi, rsi    ; Magic number to first argument (rdi)
 
     mov ax, 0
     mov ss, ax

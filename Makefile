@@ -6,9 +6,9 @@ x86_64_ASM_OBJ := $(patsubst src/%.asm, src/%.o, $(x86_64_ASM_SRC))
 
 SRC	= 	src/kernel.c				\
 		src/debug.c					\
-		# src/string.c				\
-		# src/pixel.c					\
-		# src/font.c					\
+		src/string.c				\
+		src/pixel.c					\
+		src/font.c					\
 
 OBJ	=	$(SRC:.c=.o)
 CFLAGS += -std=gnu99 -ffreestanding -O2 -Wall -Wextra
@@ -27,7 +27,7 @@ $(x86_64_ASM_OBJ): src/%.o : src/%.asm
 
 build-x86_64: $(x86_64_ASM_OBJ) $(OBJ)
 	mkdir -p dist/x86_64
-	x86_64-elf-ld -n -o dist/x86_64/kernel.bin -T $(LINKER_FILE) $(x86_64_ASM_OBJ) $(OBJ)
+	x86_64-elf-ld -n -o dist/x86_64/kernel.bin -T $(LINKER_FILE) $(x86_64_ASM_OBJ) $(OBJ) $(FONTS)
 	cp dist/x86_64/kernel.bin build/boot/
 
 	grub-file --is-x86-multiboot2 dist/x86_64/kernel.bin
