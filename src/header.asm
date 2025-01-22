@@ -21,5 +21,9 @@ framebuffer_tag_start:
     dd 1024
     dd 768
     dd 32
+
+align_tag:
+    dd 0  ; Type = 0 (end tag)
+    dd 8  ; Size of the tag (8 bytes)
 framebuffer_tag_end:
 header_end:

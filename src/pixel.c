@@ -10,16 +10,6 @@ static inline uint32_t position(uint32_t x, uint32_t y)
     return (y * framebuffer_pitch) + (x * (framebuffer_bpp) / 8);
 }
 
-// uint32_t u32_swap_endians(uint32_t value)
-// {
-//     uint8_t leftmost_byte = ((value & 0x000000FF) >> 0) << 24;
-//     uint16_t left_middle_byle = ((value & 0x0000FF00) >> 8) << 16;
-//     uint32_t right_middle_byte = ((value & 0x00FF0000) >> 16) << 8;
-//     uint32_t rightmost_byte = (value & 0xFF000000) >> 24;
-//
-//     return (leftmost_byte | left_middle_byle | right_middle_byte | rightmost_byte);
-// }
-
 /**
  * x and y indicate the pixel position
  * color is a 32 bit unsigned integer such as 0xAARRGGBB
@@ -33,9 +23,9 @@ void put_pixel(uint32_t x, uint32_t y, argb_pixel_t color)
         return;
     }
 
-    switch (framebuffer_bpp) { // Swapping endianness in the process
+    switch (framebuffer_bpp) {
     case 32:
-        framebuffer[index + 3] = (color & 0xff000000) >> 24;
+        framebuffer[index + 3] = (color & 0xff000000) >> 24; // FIX: crash
         framebuffer[index + 2] = (color & 0x00ff0000) >> 16;
         framebuffer[index + 1] = (color & 0x0000ff00) >> 8;
         framebuffer[index]     = (color & 0x000000ff);
@@ -43,7 +33,7 @@ void put_pixel(uint32_t x, uint32_t y, argb_pixel_t color)
     case 24:
         framebuffer[index + 2] = (color & 0xff0000) >> 16;
         framebuffer[index + 1] = (color & 0x00ff00) >> 8;
-        framebuffer[index ]    = (color & 0x0000ff);
+        framebuffer[index]     = (color & 0x0000ff);
         break;
     case 16:
         framebuffer[index + 1] = (color & 0xff00) >> 8;
