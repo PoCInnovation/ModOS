@@ -16,8 +16,7 @@ CC	=	x86_64-elf-gcc
 
 # objcopy -O elf32-i386 -B i386 -I binary assets/zap-ext-light32.psf assets/zap-ext-light32.o
 
-S_SRC = assets/font.s
-S_OBJ = $(S_SRC:.s=.o)
+FONT = assets/font.o
 
 GRUB_FILE =	grub.cfg
 LINKER_FILE = linker.ld
@@ -27,9 +26,13 @@ $(x86_64_ASM_OBJ): src/%.o : src/%.asm
 	mkdir -p $(dir $@)
 	nasm -f elf64 $(patsubst src/%.o, src/%.asm, $@) -o $@
 
-build-x86_64: $(x86_64_ASM_OBJ) $(OBJ) $(S_OBJ)
+build-x86_64: $(x86_64_ASM_OBJ) $(OBJ)
 	mkdir -p dist/x86_64
-	x86_64-elf-ld -n -o dist/x86_64/kernel.bin -T $(LINKER_FILE) $(x86_64_ASM_OBJ) $(OBJ) $(S_OBJ)
+	mkdir -p build/boot/
+	mkdir -p build/boot/grub
+	cp $(GRUB_FILE) build/boot/grub
+	as assets/font.s -o $(FONT)
+	x86_64-elf-ld -n -o dist/x86_64/kernel.bin -T $(LINKER_FILE) $(x86_64_ASM_OBJ) $(OBJ) $(FONT)
 	cp dist/x86_64/kernel.bin build/boot/
 
 	grub-file --is-x86-multiboot2 dist/x86_64/kernel.bin
@@ -40,6 +43,7 @@ qemu:
 	qemu-system-x86_64 -cdrom dist/x86_64/modos.iso -vga std -serial tcp::4444,server,nowait
 
 fclean:
+	rm -rf build/
 	rm -f $(x86_64_ASM_OBJ) $(OBJ) dist/x86_64/kernel.bin dist/x86_64/modos.iso
 
 re: fclean $(EXEC)

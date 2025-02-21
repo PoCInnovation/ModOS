@@ -63,43 +63,47 @@ check_long_mode:
 
 setup_page_tables:
     mov eax, page_table_l3
-    or eax, 0b11 ; present, writable
+    or eax, 0b11
     mov [page_table_l4], eax
-
+    
+    xor ecx, ecx
+.l3_loop:
     mov eax, page_table_l2
-    or eax, 0b11 ; present, writable
-    mov [page_table_l3], eax
+    or eax, 0b11
+    mov [page_table_l3 + ecx * 8], eax
+    inc ecx
+    cmp ecx, 4 
+    jne .l3_loop
 
     mov ecx, 0
-.loop:
-    mov eax, 0x200000
-    mul ecx
-    or eax, 0b10000011 ; present, writable, huge page
+.l2_loop:
+    mov eax, ecx
+    mov ebx, 0x200000
+    mul ebx
+    or eax, 0b10000011
     mov [page_table_l2 + ecx * 8], eax
-
+    
     inc ecx
     cmp ecx, 512
-    jne .loop
-
-    ret
+    jne .l2_loop
 
 enable_paging:
     mov eax, page_table_l4
     mov cr3, eax
-
+    
     mov eax, cr4
     or eax, 1 << 5
     mov cr4, eax
-
+    
     mov ecx, 0xC0000080
     rdmsr
     or eax, 1 << 8
     wrmsr
-
+    
     mov eax, cr0
     or eax, 1 << 31
+    or eax, 1 << 16
     mov cr0, eax
-
     ret
 
 error:

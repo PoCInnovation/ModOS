@@ -158,6 +158,10 @@ void kmain(void *addr, long magic) {
                     framebuffer_bpp    = tagfb->common.framebuffer_bpp;
                     serial_printf("framebuffer: %x\nframebuffer_pitch: %d\nframebuffer_width: %d\nframebuffer_height: %d\nframebuffer_bpp: %d\n", framebuffer, framebuffer_pitch, framebuffer_width, framebuffer_height, framebuffer_bpp);
 
+                    framebuffer[0] = 0xff;
+                    framebuffer[1] = 0xff;
+                    
+                    serial_printf("bye bye segfault");
                     // for (i = 0; i < tagfb->common.framebuffer_width
                     //         && i < tagfb->common.framebuffer_height; i++)
                     // {
