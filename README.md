@@ -10,7 +10,50 @@ ModOS is a modular operating system designed to be customizable, lightweight, an
 
 ### Installation
 
-[Explain how to install all of the project's dependencies]
+Install Dependencies
+
+```bash
+sudo apt update && sudo apt install -y build-essential nasm bison flex libgmp3-dev libmpfr-dev libmpc-dev texinfo
+```
+
+Extract Sources
+```
+mkdir -p ~/cross-compiler && cd ~/cross-compiler
+```
+
+
+Compile Binutils
+```
+mkdir binutils-build && cd binutils-build
+../binutils-2.40/configure --target=x86_64-elf --prefix=/opt/cross --with-sysroot --disable-nls --disable-werror
+make -j$(nproc)
+sudo make install
+cd ..
+
+```
+
+Compile GCC
+```
+mkdir gcc-build && cd gcc-build
+../gcc-13.2.0/configure --target=x86_64-elf --prefix=/opt/cross --disable-nls --enable-languages=c,c++ --without-headers
+make -j$(nproc) all-gcc
+sudo make install-gcc
+cd ..
+
+```
+
+
+```
+echo 'export PATH=/opt/cross/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+
+```
+
+Try
+```
+x86_64-elf-gcc --version
+
+```
 
 ### Quickstart
 
@@ -29,13 +72,14 @@ If you're interested in how the project is organized at a higher level, please c
 ## Our PoC team ❤️
 
 Developers
-| [<img src="https://github.com/louonezime.png?size=85" width=85><br><sub>Lou Onézime</sub>](https://github.com/louonezime) | [<img src="https://github.com/sephorah.png?size=85" width=85><br><sub>Séphorah Aniambossu</sub>](https://github.com/sephorah) | [<img src="https://github.com/lg-epitech.png?size=85" width=85><br><sub>Laurent Gonzalez</sub>](https://github.com/lg-epitech) | [<img src="https://github.com/SIMLUKE.png?size=85" width=85><br><sub>Luc Simon</sub>](https://github.com/SIMLUKE) | [<img src="https://github.com/moonia.png?size=85" width=85><br><sub>Mounia Arjdal</sub>](https://github.com/moonia)
-| :---: | :---: | :---: | :---: | :---: |
 
+| [`<img src="https://github.com/louonezime.png?size=85" width=85><br>``<sub>`Lou Onézime `</sub>`](https://github.com/louonezime) | [`<img src="https://github.com/sephorah.png?size=85" width=85><br>``<sub>`Séphorah Aniambossu `</sub>`](https://github.com/sephorah) | [`<img src="https://github.com/lg-epitech.png?size=85" width=85><br>``<sub>`Laurent Gonzalez `</sub>`](https://github.com/lg-epitech) | [`<img src="https://github.com/SIMLUKE.png?size=85" width=85><br>``<sub>`Luc Simon `</sub>`](https://github.com/SIMLUKE) | [`<img src="https://github.com/moonia.png?size=85" width=85><br>``<sub>`Mounia Arjdal `</sub>`](https://github.com/moonia) |
+| :--------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: |
 
 Manager
-| [<img src="https://github.com/pierrelissope.png?size=85" width=85><br><sub>Pierre Lissope</sub>](https://github.com/pierrelissope)
-| :---: |
+
+| [`<img src="https://github.com/pierrelissope.png?size=85" width=85><br>``<sub>`Pierre Lissope `</sub>`](https://github.com/pierrelissope) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
 
 <h2 align=center>
 Organization
