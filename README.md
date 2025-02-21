@@ -13,7 +13,7 @@ ModOS is a modular operating system designed to be customizable, lightweight, an
 Install Dependencies
 
 ```bash
-sudo apt update && sudo apt install -y grub-pc-bin mtools xorisso build-essential nasm bison flex libgmp3-dev libmpfr-dev libmpc-dev texinfo
+sudo apt update && sudo apt install -y qemu-system-x86 grub-pc-bin mtools xorriso build-essential nasm bison flex libgmp3-dev libmpfr-dev libmpc-dev texinfo
 ```
 
 Extract Sources
