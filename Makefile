@@ -15,7 +15,9 @@ CFLAGS += -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 CC	=	x86_64-elf-gcc
 
 # objcopy -O elf32-i386 -B i386 -I binary assets/zap-ext-light32.psf assets/zap-ext-light32.o
-FONTS = assets/font.o
+
+S_SRC = assets/font.s
+S_OBJ = $(S_SRC:.s=.o)
 
 GRUB_FILE =	grub.cfg
 LINKER_FILE = linker.ld
@@ -25,9 +27,9 @@ $(x86_64_ASM_OBJ): src/%.o : src/%.asm
 	mkdir -p $(dir $@)
 	nasm -f elf64 $(patsubst src/%.o, src/%.asm, $@) -o $@
 
-build-x86_64: $(x86_64_ASM_OBJ) $(OBJ)
+build-x86_64: $(x86_64_ASM_OBJ) $(OBJ) $(S_OBJ)
 	mkdir -p dist/x86_64
-	x86_64-elf-ld -n -o dist/x86_64/kernel.bin -T $(LINKER_FILE) $(x86_64_ASM_OBJ) $(OBJ) $(FONTS)
+	x86_64-elf-ld -n -o dist/x86_64/kernel.bin -T $(LINKER_FILE) $(x86_64_ASM_OBJ) $(OBJ) $(S_OBJ)
 	cp dist/x86_64/kernel.bin build/boot/
 
 	grub-file --is-x86-multiboot2 dist/x86_64/kernel.bin
