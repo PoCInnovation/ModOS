@@ -3,11 +3,12 @@ extern long_mode_start
 
 section .text
 bits 32
+
 start:
     mov esp, stack_top
 
-    mov esi, eax ; mbi
-    mov edi, ebx ; magic
+    mov esi, eax ; magic
+    mov edi, ebx ; mbi
 
     call check_multiboot
     call check_cpuid
@@ -86,9 +87,40 @@ setup_page_tables:
     inc ecx
     cmp ecx, 512
     jne .l2_loop
-    mov eax, 0xfd000000 ; FIX: find framebuffer instead of guessing
+    call get_fb_address
     or eax, 0b10000011
     mov [page_table_l2 + 488 * 8], eax
+    ret
+
+get_fb_address:
+    push ebx
+    push ecx
+    push edx
+    push esi
+    push edi
+
+    mov esi, edi
+    add esi, 8
+.next_tag:
+    mov eax, [esi]
+    mov ebx, [esi + 4]
+    cmp eax, 8      ; MULTIBOOT_TAG_TYPE_FRAMEBUFFER
+    je .found_fb
+    add esi, ebx
+    add esi, 7
+    and esi, ~7
+    cmp dword [esi], 0
+    jne .next_tag
+    jmp error
+.found_fb:
+    mov eax, [esi + 8]
+
+.exit:
+    pop edi
+    pop esi
+    pop edx
+    pop ecx
+    pop ebx
     ret
 
 enable_paging:
