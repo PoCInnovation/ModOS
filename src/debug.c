@@ -70,18 +70,14 @@ void serial_print_hex(uint32_t value)
     const char *hex_chars = "0123456789abcdef";
     int i = 8;
     buffer[i] = '\0';
-
     if (value == 0) {
-        serial_printstr("0x0");
+        serial_printstr("0");
         return;
     }
-
     while (value > 0 && i > 0) {
         buffer[--i] = hex_chars[value & 0xF];
         value >>= 4;
     }
-
-    serial_printstr("0x");
     serial_printstr(&buffer[i]);
 }
 

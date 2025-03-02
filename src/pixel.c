@@ -25,7 +25,7 @@ void put_pixel(uint32_t x, uint32_t y, argb_pixel_t color)
 
     switch (framebuffer_bpp) {
     case 32:
-        framebuffer[index + 3] = (color & 0xff000000) >> 24; // FIX: crash
+        framebuffer[index + 3] = (color & 0xff000000) >> 24;
         framebuffer[index + 2] = (color & 0x00ff0000) >> 16;
         framebuffer[index + 1] = (color & 0x0000ff00) >> 8;
         framebuffer[index]     = (color & 0x000000ff);
