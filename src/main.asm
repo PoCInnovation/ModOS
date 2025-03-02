@@ -86,7 +86,7 @@ setup_page_tables:
     inc ecx
     cmp ecx, 512
     jne .l2_loop
-    mov eax, 0xfd000000
+    mov eax, 0xfd000000 ; FIX: find framebuffer instead of guessing
     or eax, 0b10000011
     mov [page_table_l2 + 488 * 8], eax
     ret

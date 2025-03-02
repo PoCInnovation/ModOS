@@ -166,7 +166,7 @@ void kmain(void *addr, long magic) {
         }
     }
 
-    clear_screen(0xff0000);
+    clear_screen(BACKGROUND_COLOR);
 
-    // printf("Hello %d\n", 42);
+    printf("Hello World!\n");
 }
