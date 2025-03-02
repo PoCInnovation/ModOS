@@ -6,8 +6,6 @@ bits 32
 start:
     mov esp, stack_top
 
-    mov dword [0xfd000000], 0xff0000
-
     mov esi, eax ; mbi
     mov edi, ebx ; magic
 
@@ -88,6 +86,10 @@ setup_page_tables:
     inc ecx
     cmp ecx, 512
     jne .l2_loop
+    mov eax, 0xfd000000
+    or eax, 0b10000011
+    mov [page_table_l2 + 488 * 8], eax
+    ret
 
 enable_paging:
     mov eax, page_table_l4
