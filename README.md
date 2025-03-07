@@ -2,66 +2,68 @@
 
 ModOS is a modular operating system designed to be customizable, lightweight, and optimized, particularly suited for IoT environments, embedded systems, and video game development. It allows granular control over resources and supports loading/unloading of modules in real-time without requiring a reboot.
 
-## How does it work?
-
-[Explain how this project is working]
+**Currently**, we have a 64-bit OS that displays pixels on the screen using a framebuffer. The next steps are to handle memory management and the filesystem.
 
 ## Getting Started
 
 ### Installation
 
-Install Dependencies
+Install dependencies
 
+For Ubuntu:
 ```bash
 sudo apt update && sudo apt install -y qemu-system-x86 grub-pc-bin mtools xorriso build-essential nasm bison flex libgmp3-dev libmpfr-dev libmpc-dev texinfo
 ```
 
-Extract Sources
+For Fedora:
+```
+sudo dnf update && sudo dnf install -y qemu-system-x86 grub2-tools mtools xorriso make gcc nasm bison flex gmp mpfr mpc texinfo
+```
+
+Extract sources
 ```
 mkdir -p ~/cross-compiler && cd ~/cross-compiler
 ```
 
+Install [binutils](https://www.gnu.org/software/binutils/)
 
-Compile Binutils
+Compile binutils
 ```
 mkdir binutils-build && cd binutils-build
-../binutils-2.40/configure --target=x86_64-elf --prefix=/opt/cross --with-sysroot --disable-nls --disable-werror
+../binutils-X.XX/configure --target=x86_64-elf --prefix=/opt/cross --with-sysroot --disable-nls --disable-werror
 make -j$(nproc)
 sudo make install
 cd ..
-
 ```
 
 Compile GCC
 ```
 mkdir gcc-build && cd gcc-build
-../gcc-13.2.0/configure --target=x86_64-elf --prefix=/opt/cross --disable-nls --enable-languages=c,c++ --without-headers
+../gcc-XX.X.X/configure --target=x86_64-elf --prefix=/opt/cross --disable-nls --enable-languages=c,c++ --without-headers
 make -j$(nproc) all-gcc
 sudo make install-gcc
 cd ..
-
 ```
-
 
 ```
 echo 'export PATH=/opt/cross/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
-
 ```
 
 Try
 ```
 x86_64-elf-gcc --version
-
 ```
 
 ### Quickstart
 
-[Explain how to run this project]
+```
+make build-x86_64 && make qemu
+```
 
 ### Usage
 
-[Explain how to use this project]
+For now, there are no interactions; the OS can only display pixels.
 
 ## Get involved
 
@@ -71,15 +73,14 @@ If you're interested in how the project is organized at a higher level, please c
 
 ## Our PoC team ❤️
 
-Developers
 
-| [`<img src="https://github.com/louonezime.png?size=85" width=85><br>``<sub>`Lou Onézime `</sub>`](https://github.com/louonezime) | [`<img src="https://github.com/sephorah.png?size=85" width=85><br>``<sub>`Séphorah Aniambossu `</sub>`](https://github.com/sephorah) | [`<img src="https://github.com/lg-epitech.png?size=85" width=85><br>``<sub>`Laurent Gonzalez `</sub>`](https://github.com/lg-epitech) | [`<img src="https://github.com/SIMLUKE.png?size=85" width=85><br>``<sub>`Luc Simon `</sub>`](https://github.com/SIMLUKE) | [`<img src="https://github.com/moonia.png?size=85" width=85><br>``<sub>`Mounia Arjdal `</sub>`](https://github.com/moonia) |
-| :--------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: |
+Developers
+| [<img src="https://github.com/louonezime.png?size=85" width=85><br><sub>Lou Onézime</sub>](https://github.com/louonezime) | [<img src="https://github.com/lg-epitech.png?size=85" width=85><br><sub>Laurent Gonzalez</sub>](https://github.com/lg-epitech) | [<img src="https://github.com/moonia.png?size=85" width=85><br><sub>Mounia Arjdal</sub>](https://github.com/moonia) | [<img src="https://github.com/SIMLUKE.png?size=85" width=85><br><sub>Luc Simon</sub>](https://github.com/SIMLUKE) | [<img src="https://github.com/sephorah.png?size=85" width=85><br><sub>Séphorah Aniambossou</sub>](https://github.com/sephorah)
+| :---: | :---: | :---: | :---: | :---: |
 
 Manager
-
-| [`<img src="https://github.com/pierrelissope.png?size=85" width=85><br>``<sub>`Pierre Lissope `</sub>`](https://github.com/pierrelissope) |
-| :----------------------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://github.com/pierrelissope.png?size=85" width=85><br><sub>Pierre Lissope</sub>](https://github.com/pierrelissope)
+| :---:
 
 <h2 align=center>
 Organization
